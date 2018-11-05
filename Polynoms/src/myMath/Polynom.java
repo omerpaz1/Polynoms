@@ -101,11 +101,20 @@ public class Polynom implements Polynom_able{
 
 		Iterator<Monom> Monoms = this.iteretor();		
 
-
 		while(Monoms.hasNext()) {
 			Monom temp = Monoms.next();
-			if (temp.get_power() == m1.get_power()) {;
+			if(temp.isZeroMonom()) {
+				temp.add(m1);
+				return;
+			}
+			if (temp.get_power() == m1.get_power()) {; // need to fix
 			temp.add(m1);
+			if(temp.isZeroMonom()) {
+				Monoms_list.remove(temp);
+				if(Monoms_list.isEmpty()) {
+					Monoms_list.add(new Monom(0,0));
+				}
+			}
 			return;
 			}
 		}
@@ -113,6 +122,8 @@ public class Polynom implements Polynom_able{
 		Monoms_list.sort(MonomSort);
 
 	}
+
+
 
 	@Override
 	/**
