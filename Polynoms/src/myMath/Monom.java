@@ -118,12 +118,8 @@ public class Monom implements function{
 	public void add (Monom m) {
 
 		if (this.isZeroMonom()) {
-			this._coefficient = m._coefficient;
-			this._power = m._power; 
-		}
-		else if(m.isZeroMonom()) {
-			m._coefficient = this._coefficient;
-			m._power = this._power;
+			this._coefficient =+ m._coefficient;
+			this._power =+ m._power; 
 		}
 		else if (this._power == m._power) {
 			this._coefficient += m._coefficient;
