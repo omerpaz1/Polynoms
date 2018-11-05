@@ -117,11 +117,14 @@ public class Monom implements function{
 	 */
 	public void add (Monom m) {
 
-		if (isZeroMonom()) {
+		if (this.isZeroMonom()) {
 			this._coefficient = m._coefficient;
 			this._power = m._power; 
 		}
-
+		else if(m.isZeroMonom()) {
+			m._coefficient = this._coefficient;
+			m._power = this._power;
+		}
 		else if (this._power == m._power) {
 			this._coefficient += m._coefficient;
 		}
@@ -159,7 +162,7 @@ public class Monom implements function{
 	public boolean isZeroMonom() {
 		return this._coefficient == 0;
 	}
-	
+
 	public boolean equals(Monom m) {
 		if(this.get_coefficient() == 0 && m.get_coefficient() == 0) {
 			return true;
