@@ -119,6 +119,7 @@ public class Monom implements function{
 
 		if (isZeroMonom()) {
 			this._coefficient = m._coefficient;
+			this._power = m._power; 
 		}
 
 		else if (this._power == m._power) {
