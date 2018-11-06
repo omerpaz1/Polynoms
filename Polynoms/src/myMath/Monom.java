@@ -9,6 +9,8 @@ package myMath;
  *
  */
 
+
+
 public class Monom implements function{
 
 	//****************** Constructors ******************
