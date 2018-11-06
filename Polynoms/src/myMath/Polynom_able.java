@@ -76,5 +76,9 @@ public interface Polynom_able extends cont_function{
 	 * An Iterator (of Monoms) over this Polynom
 	 * @return  Iterator specific of the array 
 	 */
+	public double underX_area(double x0 , double x1 , double eps);
+	
+	public void maxMin_Polynom (double x0 , double x1 , double eps);
+
 	public Iterator<Monom> iteretor();
 }

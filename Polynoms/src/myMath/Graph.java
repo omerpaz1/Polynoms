@@ -20,49 +20,26 @@ public class Graph {
 	
 	public static void main(String[] args) {
 		
-		String s = "0.2*X^4+(0-1.5)*X^3+3*X^2+(0-X)+(0-5)";
+		//String s = "0.2*X^4+(0-1.5)*X^3+3*X^2+(0-X)+(0-5)";
+		String s = "X^3+(0-2*X)";
+		
 
+		Polynom poly = new Polynom("X^3-2X");
+		System.out.println(poly.getMax());
+		
+		//poly.underX_area(-2, 6, 0.01);
+		poly.maxMin_Polynom(-2, 2, 0.001);
+		
 		Draw_Polynom(s);
 	}
 	// ex1
-	
-	
-	public double underX_area(double x0 , double x1 , double eps) {
-		// Write your code here, use the Area function in polynom.. its Similar
-		// remember we need to calculate the area under X axis and above the function.
-		// call me if you have problem.
-		return 0;
-	}
-	
-	public double maxMin_Polynom (Polynom poly) {
-		
-		// i will calculte the max and min function and draw it.
-		return 0;
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	public static void Draw_Polynom(String s) {
 		JFrame f = new JFrame();		
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		OptionAxe optionsAxes = new OptionAxe(Color.BLACK, true, -1, 1, true, true);
 		Graphique.getInstance().initGraphique(new AxeX(-2, 10, optionsAxes), new AxeY(-10, 6, optionsAxes));
-		//Graphique.getInstance().ajouterElement(new Point('A', 2, 2));
+		Graphique.getInstance().ajouterElement(new Point('A', -0.81600000000011, 1.0886615040000003));
 		Graphique.getInstance().ajouterElement(new Fonction((s)));
 		List<Point> points = new ArrayList<Point>();
 		Graphique.getInstance().ajouterElement(new Polygone(points));

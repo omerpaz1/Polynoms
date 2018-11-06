@@ -2,6 +2,8 @@ package myMath;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+
+import fr.julien.graphique.element.point.Point;
 import myMath.Monom;
 
 
@@ -22,6 +24,8 @@ public class Polynom implements Polynom_able{
 
 	private ArrayList<Monom> Monoms_list=  new ArrayList<>();
 	private Monom_Comperator  MonomSort = new Monom_Comperator();
+	private Point max;
+	private Point min;
 
 
 	//****************** Constructors ******************
@@ -30,9 +34,13 @@ public class Polynom implements Polynom_able{
 	 */
 	public Polynom() {
 		this.Monoms_list.add(new Monom(0,0));
+		this.max = new Point(0,0);
+		this.min = new Point(0,0);
+
 	}
 
 	public Polynom(Monom m) {
+		this();
 		this.Monoms_list.add(m);
 	}
 	/**
@@ -51,9 +59,18 @@ public class Polynom implements Polynom_able{
 	 * @param string Get a String in the form of a Polynom
 	 */
 	public Polynom(String string) {	
+		this();
 		PolytoString(string);		
 
 	}
+
+	//****************** Getters ******************
+
+	public double getMax() {
+		return (double)this.max.getY();
+	}
+
+
 
 	//****************** Functions *****************
 
@@ -389,5 +406,39 @@ public class Polynom implements Polynom_able{
 
 	}
 
+	@Override
+	public double underX_area(double x0, double x1, double eps) {
+		// Write your code here, use the Area function in polynom.. its Similar
+		// remember we need to calculate the area under X axis and above the function.
+		// call me if you have problem.		
+		return 0;
+	}
 
+	@Override
+	public void maxMin_Polynom(double x0, double x1, double eps) {
+		double y = f(x0);
+		double x = f(x0);
+		double max = f(x0);
+		//double min = x1;
+
+		for (; x0 < x1; x0=x0+eps) {
+
+			if (f(x0) > max) {
+				y = f(x0);
+				x = x0;
+				max = f(x0);
+				System.out.println(f(x0)+eps);
+				System.out.println("f(x0): "+f(x0)+ "f(x0)+eps: "+f(x0)+eps);
+			}else if(max > f(x0)+eps) {
+				break;
+			}
+	
+
+		}
+
+		System.out.println(max);
+		System.out.println("x is: "+x);
+		System.out.println("y is: "+y);
+		Point maxPoint = new Point(x,y);
+	}
 }
