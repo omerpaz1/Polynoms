@@ -24,7 +24,7 @@ public class Graph {
 
 		Draw_Polynom(s);
 	}
-	
+	// ex1
 	
 	
 	public double underX_area(double x0 , double x1 , double eps) {
