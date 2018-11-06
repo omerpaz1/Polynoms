@@ -17,10 +17,6 @@ class MonomTest {
 	static double actualValue;
 
 
-	@AfterAll
-	static void tearDownAfterClass() throws Exception {
-	}
-
 	@BeforeEach
 	void setUp() throws Exception {
 		expected_Monom = new Monom(2,3);
