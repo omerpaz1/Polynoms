@@ -8,7 +8,7 @@ package myMath;
  * @author Omer Paz,Shimon Mimoun
  *
  */
-//test
+
 public class Monom implements function{
 
 	//****************** Constructors ******************
