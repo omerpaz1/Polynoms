@@ -455,26 +455,25 @@ public class Polynom implements Polynom_able{
 		double min = f(x0);
 
 		for (; x0 < x1; x0=x0+eps) {
-			if((min < f(x0))) {
+			System.out.println("f(x0): "+f(x0)+" min: "+min+" f(x0+eps): "+f(x0+eps));
+			if(min < f(x0)) {
 				min = f(x0);
-			}
-			else if (min < (f(x0)+eps)){
 				if(min == f(x0)) {
 					continue;
-				}
-				else {
+				}else {
 					if(min < f(x0+eps)) {
 						minp = new Point(x0,f(x0));
 						break;
 					}
-				}	
+				}
 			}
-
 		}
 		return minp;
+
 	}
+
 	private static void Draw_Polynom(String s, Point max , Point min) {
-		
+
 		JFrame f = new JFrame();		
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		OptionAxe optionsAxes = new OptionAxe(Color.BLACK, true, -1, 1, true, true);
@@ -490,8 +489,8 @@ public class Polynom implements Polynom_able{
 		f.pack();
 		f.setLocationRelativeTo(null);
 		f.setVisible(true);
-		
+
 	}
-	
+
 
 }
