@@ -415,7 +415,24 @@ public class Polynom implements Polynom_able{
 		// Write your code here, use the Area function in polynom.. its Similar
 		// remember we need to calculate the area under X axis and above the function.
 		// call me if you have problem.		
-		return 0;
+		double sum = 0;
+
+		if (x0 == x1) {
+			return sum;
+		}
+		if (x1 < x0) {
+			double temp = x1;
+			x1 = x0;
+			x0=temp;
+		}
+
+		for (; x0 < x1; x0 = x0+eps) {
+			if (f(x0) <= 0) {
+				double area_By_Parts = ((f(x0)+f(x0+eps))/2)*eps;
+				sum = sum + area_By_Parts;
+			}
+		}
+		return sum;
 	}
 
 	@Override
