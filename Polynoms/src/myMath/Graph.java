@@ -23,33 +23,15 @@ public class Graph {
 		//String s = "0.2*X^4+(0-1.5)*X^3+3*X^2+(0-X)+(0-5)";
 		String s = "X^3+(0-2*X)";
 		Polynom poly = new Polynom("X^3-2X");
-		poly.maxMin_Polynom(-2, 2, 0.01);
-		Point max_point = new Point(-0.8099999999999989,1.088559);
-		Point min_point = new Point(3,4);
+		poly.maxMin_Polynom(s, -2, 2, 0.1);
+		//Point max_point = new Point(-0.8099999999999989,1.088559);
+		//Point min_point = new Point(3,4);
 
 		
-		Draw_Polynom(s, max_point , min_point);
+		//Draw_Polynom(s, max_point , min_point);
 	}
 	// ex1
 	
-	public static void Draw_Polynom(String s, Point max , Point min) {
-		
-		JFrame f = new JFrame();		
-		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		OptionAxe optionsAxes = new OptionAxe(Color.BLACK, true, -1, 1, true, true);
-		Graphique.getInstance().initGraphique(new AxeX(-2, 10, optionsAxes), new AxeY(-10, 6, optionsAxes));
-		Graphique.getInstance().ajouterElement(new Point('A', max.getAbscisse(),max.getOrdonnee()));
-		Graphique.getInstance().ajouterElement(new Point('B', min.getAbscisse(),min.getOrdonnee()));
 
-		Graphique.getInstance().ajouterElement(new Fonction((s)));
-		List<Point> points = new ArrayList<Point>();
-		Graphique.getInstance().ajouterElement(new Polygone(points));
-		Graphique.getInstance().ajouterElement(new Quadrillage(0.5, 0.5));
-		f.add(new ZoneGraphique());
-		f.pack();
-		f.setLocationRelativeTo(null);
-		f.setVisible(true);
-		
-	}
 
 }

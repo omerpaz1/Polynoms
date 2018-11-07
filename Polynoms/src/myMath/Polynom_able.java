@@ -78,7 +78,7 @@ public interface Polynom_able extends cont_function{
 	 */
 	public double underX_area(double x0 , double x1 , double eps);
 	
-	public void maxMin_Polynom (double x0 , double x1 , double eps);
+	public void maxMin_Polynom (String s ,double x0 , double x1 , double eps);
 
 	public Iterator<Monom> iteretor();
 }

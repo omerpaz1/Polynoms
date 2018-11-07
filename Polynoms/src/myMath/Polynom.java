@@ -1,9 +1,21 @@
 package myMath;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
+import javax.swing.JFrame;
+
+import fr.julien.graphique.Graphique;
+import fr.julien.graphique.ZoneGraphique;
+import fr.julien.graphique.axes.AxeX;
+import fr.julien.graphique.axes.AxeY;
+import fr.julien.graphique.axes.OptionAxe;
+import fr.julien.graphique.element.fonction.Fonction;
+import fr.julien.graphique.element.forme.Polygone;
 import fr.julien.graphique.element.point.Point;
+import fr.julien.graphique.element.quadrillage.Quadrillage;
 import myMath.Monom;
 
 
@@ -24,6 +36,8 @@ public class Polynom implements Polynom_able{
 
 	private ArrayList<Monom> Monoms_list=  new ArrayList<>();
 	private Monom_Comperator  MonomSort = new Monom_Comperator();
+	private ArrayList<Point> Point_list =  new ArrayList<>();
+
 
 
 	//****************** Constructors ******************
@@ -405,14 +419,17 @@ public class Polynom implements Polynom_able{
 	}
 
 	@Override
-	public void maxMin_Polynom(double x0, double x1, double eps) {
+	public void maxMin_Polynom(String s, double x0, double x1, double eps) {
+		Point maxp = maxPoint(x0,x1,eps);
+		Point minp = minPoint(x0,x1,eps);
+		Draw_Polynom(s, maxp , minp);
 
+
+	}
+
+	private Point maxPoint(double x0, double x1, double eps) {
+		Point maxp = new Point(0,0);
 		double max = f(x0);
-		double min = f(x0);
-		Point p_min = new Point(0,0);
-		Point p_max = new Point(0,0);
-
-
 
 		for (; x0 < x1; x0=x0+eps) {
 			if((f(x0) > max)) {
@@ -424,15 +441,57 @@ public class Polynom implements Polynom_able{
 				}
 				else {
 					if(max > f(x0+eps)) {
-						p_max = new Point(x0,f(x0));
-						System.out.println(p_max.toString());
+						maxp = new Point(x0,f(x0));
 						break;
-
 					}
 				}	
 			}
 
 		}
+		return maxp;
 	}
+	private Point minPoint(double x0, double x1, double eps) {
+		Point minp = new Point(0,0);
+		double min = f(x0);
+
+		for (; x0 < x1; x0=x0+eps) {
+			if((min < f(x0))) {
+				min = f(x0);
+			}
+			else if (min < (f(x0)+eps)){
+				if(min == f(x0)) {
+					continue;
+				}
+				else {
+					if(min < f(x0+eps)) {
+						minp = new Point(x0,f(x0));
+						break;
+					}
+				}	
+			}
+
+		}
+		return minp;
+	}
+	private static void Draw_Polynom(String s, Point max , Point min) {
+		
+		JFrame f = new JFrame();		
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		OptionAxe optionsAxes = new OptionAxe(Color.BLACK, true, -1, 1, true, true);
+		Graphique.getInstance().initGraphique(new AxeX(-2, 10, optionsAxes), new AxeY(-10, 6, optionsAxes));
+		Graphique.getInstance().ajouterElement(new Point('A', max.getAbscisse(),max.getOrdonnee()));
+		Graphique.getInstance().ajouterElement(new Point('B', min.getAbscisse(),min.getOrdonnee()));
+
+		Graphique.getInstance().ajouterElement(new Fonction((s)));
+		List<Point> points = new ArrayList<Point>();
+		Graphique.getInstance().ajouterElement(new Polygone(points));
+		Graphique.getInstance().ajouterElement(new Quadrillage(0.5, 0.5));
+		f.add(new ZoneGraphique());
+		f.pack();
+		f.setLocationRelativeTo(null);
+		f.setVisible(true);
+		
+	}
+	
 
 }
