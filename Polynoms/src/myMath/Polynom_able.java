@@ -76,9 +76,20 @@ public interface Polynom_able extends cont_function{
 	 * An Iterator (of Monoms) over this Polynom
 	 * @return  Iterator specific of the array 
 	 */
+	public Iterator<Monom> iteretor();
+	
+	
+	/**
+	 * Compute Riemann's Integral over this Polynom starting from x0, till x1 using eps size steps,
+	 * see: https://en.wikipedia.org/wiki/Riemann_integral
+	 * @param x0 starting point
+	 * @param x1 end point
+	 * @param eps positive step value
+	 * @return the approximated area under X axis below this Polynom and between the [x0,x1] range.
+	 */
 	public double underX_area(double x0 , double x1 , double eps);
 	
 	public void maxMin_Polynom (String s ,double x0 , double x1 , double eps);
 
-	public Iterator<Monom> iteretor();
+	
 }

@@ -304,7 +304,7 @@ public class Polynom implements Polynom_able{
 				sum = sum + area_By_Parts;
 			}
 		}
-		return sum;
+		return Math.abs(sum);
 	}
 
 
@@ -411,10 +411,7 @@ public class Polynom implements Polynom_able{
 	}
 
 	@Override
-	public double underX_area(double x0, double x1, double eps) {
-		// Write your code here, use the Area function in polynom.. its Similar
-		// remember we need to calculate the area under X axis and above the function.
-		// call me if you have problem.		
+	public double underX_area(double x0, double x1, double eps) {	
 		double sum = 0;
 
 		if (x0 == x1) {
@@ -432,7 +429,7 @@ public class Polynom implements Polynom_able{
 				sum = sum + area_By_Parts;
 			}
 		}
-		return sum;
+		return Math.abs(sum);
 	}
 
 	@Override
