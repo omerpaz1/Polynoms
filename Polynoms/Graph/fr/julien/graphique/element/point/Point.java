@@ -73,6 +73,10 @@ public class Point extends AbstractElementGraphique {
 			g.drawString(nom+"", 16, 16);
 		}
 	}
+	@Override
+	public String toString() {
+		return "Point: "+this.getAbscisse()+","+this.getOrdonnee();
+	}
 
 
 }

@@ -24,8 +24,6 @@ public class Polynom implements Polynom_able{
 
 	private ArrayList<Monom> Monoms_list=  new ArrayList<>();
 	private Monom_Comperator  MonomSort = new Monom_Comperator();
-	private Point max;
-	private Point min;
 
 
 	//****************** Constructors ******************
@@ -34,9 +32,6 @@ public class Polynom implements Polynom_able{
 	 */
 	public Polynom() {
 		this.Monoms_list.add(new Monom(0,0));
-		this.max = new Point(0,0);
-		this.min = new Point(0,0);
-
 	}
 
 	public Polynom(Monom m) {
@@ -64,11 +59,6 @@ public class Polynom implements Polynom_able{
 
 	}
 
-	//****************** Getters ******************
-
-	public double getMax() {
-		return (double)this.max.getY();
-	}
 
 
 
@@ -416,29 +406,33 @@ public class Polynom implements Polynom_able{
 
 	@Override
 	public void maxMin_Polynom(double x0, double x1, double eps) {
-		double y = f(x0);
-		double x = f(x0);
+
 		double max = f(x0);
-		//double min = x1;
+		double min = f(x0);
+		Point p_min = new Point(0,0);
+		Point p_max = new Point(0,0);
+
+
 
 		for (; x0 < x1; x0=x0+eps) {
-
-			if (f(x0) > max) {
-				y = f(x0);
-				x = x0;
+			if((f(x0) > max)) {
 				max = f(x0);
-				System.out.println(f(x0)+eps);
-				System.out.println("f(x0): "+f(x0)+ "f(x0)+eps: "+f(x0)+eps);
-			}else if(max > f(x0)+eps) {
-				break;
 			}
-	
+			else if (max < (f(x0)+eps)){
+				if(max == f(x0)) {
+					continue;
+				}
+				else {
+					if(max > f(x0+eps)) {
+						p_max = new Point(x0,f(x0));
+						System.out.println(p_max.toString());
+						break;
+
+					}
+				}	
+			}
 
 		}
-
-		System.out.println(max);
-		System.out.println("x is: "+x);
-		System.out.println("y is: "+y);
-		Point maxPoint = new Point(x,y);
 	}
+
 }
