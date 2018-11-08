@@ -234,7 +234,7 @@ public class Polynom implements Polynom_able{
 		double f_x1 = f(x1);
 		double c = x0;
 
-		if(!Solotion(this,f_x0,f_x1)) {
+		if((f_x0 *f_x1) > 0) {
 			System.out.println("There is no solotion for this polynom.");
 			return Double.MAX_VALUE;
 		}
@@ -253,10 +253,6 @@ public class Polynom implements Polynom_able{
 		return c;
 	}
 
-	private boolean Solotion(Polynom poly, double x0, double x1) {
-		return (poly.f(x0) * poly.f(x1) <=0);
-
-	}
 
 	@Override
 	public Polynom_able copy() {
@@ -446,40 +442,43 @@ public class Polynom implements Polynom_able{
 		poly = (Polynom) this.derivative();
 
 		findPoints(poly,s,max,min, x0,x1);
-		System.out.println(poly.toString());
+		//System.out.println(poly.toString());
 
 	}
 
-	private double findPoints(Polynom poly,String s,Point max ,Point min, double x0, double x1) {
-
-
-		double mid = (x0+(x1-x0))/2;
-
-		if(Solotion(poly,x0, mid)) {
-			double temp = poly.root(x0, mid, 0.01);
-
-			if(this.f(temp) > 0) {
-				max = new Point(temp, this.f(temp));
-			}
-			else if (this.f(temp) < 0) {
-				min = new Point(temp,this.f(temp));	
-			}
+	private double findPoints(Polynom deretive,String s,Point max ,Point min, double x0, double x1) {
+		
+		double temp = deretive.root(x0, x1, 0.01);
+		if(this.f(temp) > 0){
+			max = new Point(temp, this.f(temp));
 		}
-		else if (Solotion(poly,mid, x1)) {
-			double temp = poly.root(mid, x1, 0.01);
+		else {
+			min = new Point(temp,this.f(temp));
+		}
 			
-			if(this.f(temp) > 0) {
-				max = new Point(temp, this.f(temp));
+		if(deretive.f(temp)*deretive.f(x1) > 0) {
+			
+			double mid = deretive.root(x0, temp, 0.01);
+			if(this.f(mid) > 0) {
+				System.out.println(this.f(mid));
+				
+				if (this.f(mid) > max.getOrdonnee()) {
+					max = new Point(temp,this.f(mid));
+				}
 			}
-			else if (this.f(temp) < 0) {
-				min = new Point(temp,this.f(temp));	
+			if (this.f(mid) < 0) {
+				
+				if(this.f(mid) < min.getOrdonnee()) {
+					min = new Point(temp,this.f(mid));
+
+				}
 			}
+
 			
 		}
-		if (max != null && min !=null) {
-			Draw_Polynom(s,max,min);
-		}
+			
 		return 0;
+
 	}
 
 
