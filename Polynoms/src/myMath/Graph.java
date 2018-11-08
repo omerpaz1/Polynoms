@@ -24,6 +24,8 @@ public class Graph {
 		//String s = "0.2X^4-1.5X^3+3X^2-X-5";
 		Polynom poly = new Polynom("0.2X^4-1.5X^3+3X^2-X-5");
 		poly.maxMin_Polynom(s, -2, 6);
+		System.out.println("the area above x-ais: "+poly.underX_area(-2, 6, 0.01));
+		System.out.println("the area under x-ais: "+poly.area(-2, 6, 0.01));
 		//System.out.println(poly.derivative());
 		//Polynom p1 = new Polynom("X^2-1");
 		//System.out.println(p1.area(0, 2, 0.01));
