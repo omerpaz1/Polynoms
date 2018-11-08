@@ -2,6 +2,7 @@ package myMath;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -37,6 +38,8 @@ public class Polynom implements Polynom_able{
 	private ArrayList<Monom> Monoms_list=  new ArrayList<>();
 	private Monom_Comperator  MonomSort = new Monom_Comperator();
 	private ArrayList<Point> Point_list =  new ArrayList<>();
+	private ArrayList<Double> MaxMin =  new ArrayList<>();
+
 
 
 
@@ -230,13 +233,11 @@ public class Polynom implements Polynom_able{
 	@Override
 	public double root(double x0, double x1, double eps) {
 
-		double f_x0 = f(x0);
-		double f_x1 = f(x1);
+
 		double c = x0;
 
-		System.out.println(f_x0*f_x1);
-		
-		if((f_x0 *f_x1) > 0) {
+		System.out.println(f(x0)*f(x1));
+		if((f(x0)*f(x1)) >= 0) {
 			System.out.println("There is no solotion for this polynom.");
 			return Double.MAX_VALUE;
 		}
@@ -244,7 +245,7 @@ public class Polynom implements Polynom_able{
 			while ((x1 - x0) >= eps) {			
 				c = x0+(x1-x0)/2;
 
-				if (f(c)*f_x0 < 0) 
+				if (f(c)*f(x0) < 0) 
 					x1 = c;
 				else {
 					x0 = c;
@@ -434,36 +435,35 @@ public class Polynom implements Polynom_able{
 		return Math.abs(sum);
 	}
 
+
 	@Override
-	public double maxMin_Polynom(String s ,Polynom poly , double x0, double x1) {
+	public void PrintMinMax(String s, Polynom poly, double x0, double x1) {
 
-		if(poly.Monoms_list.get(0).get_power() == 1) {
-			findPoint(this,poly,x0, poly.root(x0, x1, 0.01));
+		Polynom der = (Polynom) poly.derivative();
+		double eps = 0.0001;
+		for (;x0 < x1 ; x0=x0+eps) {
+			if(der.f(x0) < 0 && der.f(x0+eps) > 0) {
+				Point_list.add(new Point(x0,poly.f(x0)));
+			}
+			if(der.f(x0) > 0 && der.f(x0+eps) < 0) {
+				Point_list.add(new Point(x0,poly.f(x0)));
+			}
+
 		}
-		return maxMin_Polynom(s,(Polynom) poly.derivative(),x0,x1);
-	}
-	
-	
-	public void findPoint(Polynom poly , Polynom der, double x0, double x1) {
-		
-		double temp = poly.root(x0, x1, 0.01);
-		Point_list.add(new Point(temp,poly.f(temp)));
- 
+		Draw_MinMax(s,Point_list);
+
 	}
 
-
-
-
-
-	private static void Draw_Polynom(String s, Point max , Point min) {
+	private static void Draw_MinMax(String s, ArrayList<Point> point_list) {
 
 		JFrame f = new JFrame();		
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		OptionAxe optionsAxes = new OptionAxe(Color.BLACK, true, -1, 1, true, true);
 		Graphique.getInstance().initGraphique(new AxeX(-2, 10, optionsAxes), new AxeY(-10, 6, optionsAxes));
-		Graphique.getInstance().ajouterElement(new Point('A', max.getAbscisse(),max.getOrdonnee()));
-		Graphique.getInstance().ajouterElement(new Point('B', min.getAbscisse(),min.getOrdonnee()));
-
+		char a = 'A';
+		for (int i = 0 ; i < point_list.size(); i++, a++) {
+		Graphique.getInstance().ajouterElement(new Point(a, point_list.get(i).getAbscisse(),point_list.get(i).getOrdonnee()));
+		}
 		Graphique.getInstance().ajouterElement(new Fonction((s)));
 		List<Point> points = new ArrayList<Point>();
 		Graphique.getInstance().ajouterElement(new Polygone(points));
@@ -474,6 +474,7 @@ public class Polynom implements Polynom_able{
 		f.setVisible(true);
 
 	}
+
 
 
 }

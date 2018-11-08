@@ -89,7 +89,7 @@ public interface Polynom_able extends cont_function{
 	 */
 	public double underX_area(double x0 , double x1 , double eps);
 	
-	public void maxMin_Polynom (String s ,double x0 , double x1);
+	public void PrintMinMax (String s ,Polynom poly , double x0, double x1);
 
 	
 }
