@@ -234,8 +234,7 @@ public class Polynom implements Polynom_able{
 		double f_x1 = f(x1);
 		double c = x0;
 
-		if(f_x0 * f_x1 >= 0) {
-
+		if(!Solotion(this,f_x0,f_x1)) {
 			System.out.println("There is no solotion for this polynom.");
 			return Double.MAX_VALUE;
 		}
@@ -252,6 +251,11 @@ public class Polynom implements Polynom_able{
 			}
 		}
 		return c;
+	}
+
+	private boolean Solotion(Polynom poly, double x0, double x1) {
+		return (poly.f(x0) * poly.f(x1) <=0);
+
 	}
 
 	@Override
@@ -437,33 +441,48 @@ public class Polynom implements Polynom_able{
 		double temp = 0;
 		Point max = null;
 		Point min = null;
+
 		Polynom poly = new Polynom();
 		poly = (Polynom) this.derivative();
-		findPoints(poly,s,temp,max,min, x0,x1);
+
+		findPoints(poly,s,max,min, x0,x1);
 		System.out.println(poly.toString());
-		
+
 	}
 
-	private double findPoints(Polynom poly,String s,double temp, Point max ,Point min, double x0, double x1) {
+	private double findPoints(Polynom poly,String s,Point max ,Point min, double x0, double x1) {
 
-		if(temp == Double.MAX_VALUE ) {
-			return 0;
-		}
 
-		temp = poly.root(x0, x1, 0.001);
-		if(poly.f(temp)> 0) {
-			max = new Point(temp,poly.f(temp));
+		double mid = (x0+(x1-x0))/2;
+
+		if(Solotion(poly,x0, mid)) {
+			double temp = poly.root(x0, mid, 0.01);
+
+			if(this.f(temp) > 0) {
+				max = new Point(temp, this.f(temp));
+			}
+			else if (this.f(temp) < 0) {
+				min = new Point(temp,this.f(temp));	
+			}
 		}
-		else {
-			min = new Point(temp,poly.f(temp));
+		else if (Solotion(poly,mid, x1)) {
+			double temp = poly.root(mid, x1, 0.01);
+			
+			if(this.f(temp) > 0) {
+				max = new Point(temp, this.f(temp));
+			}
+			else if (this.f(temp) < 0) {
+				min = new Point(temp,this.f(temp));	
+			}
+			
 		}
-		min = new Point(temp,f(temp));
-		Draw_Polynom(s,max,min);
-		//findPoints(poly, s,temp,  max , min,  x0,  x1);
-		
+		if (max != null && min !=null) {
+			Draw_Polynom(s,max,min);
+		}
 		return 0;
-	
 	}
+
+
 
 
 	private static void Draw_Polynom(String s, Point max , Point min) {
