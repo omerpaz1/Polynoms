@@ -419,58 +419,38 @@ public class Polynom implements Polynom_able{
 	}
 
 	@Override
-	public void maxMin_Polynom(String s, double x0, double x1, double eps) {
-		Point maxp = maxPoint(x0,x1,eps);
-		Point minp = minPoint(x0,x1,eps);
-		Draw_Polynom(s, maxp , minp);
-
-
+	public void maxMin_Polynom(String s ,double x0, double x1) {
+		double temp = 0;
+		Point max = null;
+		Point min = null;
+		Polynom poly = new Polynom();
+		poly = (Polynom) this.derivative();
+		findPoints(poly,s,temp,max,min, x0,x1);
+		System.out.println(poly.toString());
+		
 	}
 
-	private Point maxPoint(double x0, double x1, double eps) {
-		Point maxp = new Point(0,0);
-		double max = f(x0);
+	private double findPoints(Polynom poly,String s,double temp, Point max ,Point min, double x0, double x1) {
 
-		for (; x0 < x1; x0=x0+eps) {
-			if((f(x0) > max)) {
-				max = f(x0);
-			}
-			else if (max < (f(x0)+eps)){
-				if(max == f(x0)) {
-					continue;
-				}
-				else {
-					if(max > f(x0+eps)) {
-						maxp = new Point(x0,f(x0));
-						break;
-					}
-				}	
-			}
-
+		if(temp == Double.MAX_VALUE ) {
+			return 0;
 		}
-		return maxp;
-	}
-	private Point minPoint(double x0, double x1, double eps) {
-		Point minp = new Point(0,0);
-		double min = f(x0);
 
-		for (; x0 < x1; x0=x0+eps) {
-			System.out.println("f(x0): "+f(x0)+" min: "+min+" f(x0+eps): "+f(x0+eps));
-			if(min < f(x0)) {
-				min = f(x0);
-				if(min == f(x0)) {
-					continue;
-				}else {
-					if(min < f(x0+eps)) {
-						minp = new Point(x0,f(x0));
-						break;
-					}
-				}
-			}
+		temp = poly.root(x0, x1, 0.001);
+		if(poly.f(temp)> 0) {
+			max = new Point(temp,poly.f(temp));
 		}
-		return minp;
-
+		else {
+			min = new Point(temp,poly.f(temp));
+		}
+		min = new Point(temp,f(temp));
+		Draw_Polynom(s,max,min);
+		//findPoints(poly, s,temp,  max , min,  x0,  x1);
+		
+		return 0;
+	
 	}
+
 
 	private static void Draw_Polynom(String s, Point max , Point min) {
 

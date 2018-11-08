@@ -20,12 +20,15 @@ public class Graph {
 	
 	public static void main(String[] args) {
 		
-		//String s = "0.2*X^4+(0-1.5)*X^3+3*X^2+(0-X)+(0-5)";
-		String s = "X^3+(0-2*X)";
-		Polynom poly = new Polynom("X^3-2X");
-		poly.maxMin_Polynom(s, -2, 2, 0.1);
-		//Point max_point = new Point(-0.8099999999999989,1.088559);
-		//Point min_point = new Point(3,4);
+		String s = "0.2*X^4+(0-1.5)*X^3+3*X^2+(0-X)+(0-5)";
+		//String s = "0.2X^4-1.5X^3+3X^2-X-5";
+		Polynom poly = new Polynom("0.2X^4-1.5X^3+3X^2-X-5");
+		poly.maxMin_Polynom(s, -2, 6);
+		//System.out.println(poly.derivative());
+		//Polynom p1 = new Polynom("X^2-1");
+		//System.out.println(p1.area(0, 2, 0.01));
+		//System.out.println(poly.root(1, 2, 0.01));
+
 
 		
 		//Draw_Polynom(s, max_point , min_point);
