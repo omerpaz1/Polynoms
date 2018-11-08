@@ -38,7 +38,6 @@ public class Polynom implements Polynom_able{
 	private ArrayList<Monom> Monoms_list=  new ArrayList<>();
 	private Monom_Comperator  MonomSort = new Monom_Comperator();
 	private ArrayList<Point> Point_list =  new ArrayList<>();
-	private ArrayList<Double> MaxMin =  new ArrayList<>();
 
 
 
@@ -437,16 +436,16 @@ public class Polynom implements Polynom_able{
 
 
 	@Override
-	public void PrintMinMax(String s, Polynom poly, double x0, double x1) {
+	public void PrintMinMax(String s, double x0, double x1) {
 
-		Polynom der = (Polynom) poly.derivative();
+		Polynom der = (Polynom) this.derivative();
 		double eps = 0.0001;
 		for (;x0 < x1 ; x0=x0+eps) {
 			if(der.f(x0) < 0 && der.f(x0+eps) > 0) {
-				Point_list.add(new Point(x0,poly.f(x0)));
+				Point_list.add(new Point(x0,this.f(x0)));
 			}
 			if(der.f(x0) > 0 && der.f(x0+eps) < 0) {
-				Point_list.add(new Point(x0,poly.f(x0)));
+				Point_list.add(new Point(x0,this.f(x0)));
 			}
 
 		}
