@@ -234,13 +234,15 @@ public class Polynom implements Polynom_able{
 		double f_x1 = f(x1);
 		double c = x0;
 
+		System.out.println(f_x0*f_x1);
+		
 		if((f_x0 *f_x1) > 0) {
 			System.out.println("There is no solotion for this polynom.");
 			return Double.MAX_VALUE;
 		}
 		else {
 			while ((x1 - x0) >= eps) {			
-				c = (x1+x0)/2;
+				c = x0+(x1-x0)/2;
 
 				if (f(c)*f_x0 < 0) 
 					x1 = c;
@@ -433,53 +435,22 @@ public class Polynom implements Polynom_able{
 	}
 
 	@Override
-	public void maxMin_Polynom(String s ,double x0, double x1) {
-		double temp = 0;
-		Point max = null;
-		Point min = null;
+	public double maxMin_Polynom(String s ,Polynom poly , double x0, double x1) {
 
-		Polynom poly = new Polynom();
-		poly = (Polynom) this.derivative();
-
-		findPoints(poly,s,max,min, x0,x1);
-		//System.out.println(poly.toString());
-
+		if(poly.Monoms_list.get(0).get_power() == 1) {
+			findPoint(this,poly,x0, poly.root(x0, x1, 0.01));
+		}
+		return maxMin_Polynom(s,(Polynom) poly.derivative(),x0,x1);
 	}
-
-	private double findPoints(Polynom deretive,String s,Point max ,Point min, double x0, double x1) {
+	
+	
+	public void findPoint(Polynom poly , Polynom der, double x0, double x1) {
 		
-		double temp = deretive.root(x0, x1, 0.01);
-		if(this.f(temp) > 0){
-			max = new Point(temp, this.f(temp));
-		}
-		else {
-			min = new Point(temp,this.f(temp));
-		}
-			
-		if(deretive.f(temp)*deretive.f(x1) > 0) {
-			
-			double mid = deretive.root(x0, temp, 0.01);
-			if(this.f(mid) > 0) {
-				System.out.println(this.f(mid));
-				
-				if (this.f(mid) > max.getOrdonnee()) {
-					max = new Point(temp,this.f(mid));
-				}
-			}
-			if (this.f(mid) < 0) {
-				
-				if(this.f(mid) < min.getOrdonnee()) {
-					min = new Point(temp,this.f(mid));
-
-				}
-			}
-
-			
-		}
-			
-		return 0;
-
+		double temp = poly.root(x0, x1, 0.01);
+		Point_list.add(new Point(temp,poly.f(temp)));
+ 
 	}
+
 
 
 
