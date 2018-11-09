@@ -89,6 +89,13 @@ public interface Polynom_able extends cont_function{
 	 */
 	public double underX_area(double x0 , double x1 , double eps);
 	
+	/**
+	 * Search for Minimum and Maximum points, and add them to the Graphic Drawing.
+	 * @param s  Receiv String in the form of a Polynom
+	 * @param x0 lower definition domain
+	 * @param x1 higher definition domain
+	 * @return Printing of the Minimum and Maximum Points on the Graph
+	 */
 	public void PrintMinMax(String s, double x0, double x1);
 
 	
