@@ -82,6 +82,7 @@ public interface Polynom_able extends cont_function{
 	/**
 	 * Compute Riemann's Integral over this Polynom starting from x0, till x1 using eps size steps,
 	 * see: https://en.wikipedia.org/wiki/Riemann_integral
+	 * 
 	 * @param x0 starting point
 	 * @param x1 end point
 	 * @param eps positive step value
