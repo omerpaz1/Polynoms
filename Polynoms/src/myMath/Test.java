@@ -1,5 +1,7 @@
 package myMath;
 
+import Exeptions.wrongDataException;
+
 /**
  * this class testing all the functions in Polynom and Monom class's.
  * @author Omer
@@ -8,7 +10,7 @@ package myMath;
  */
 public class Test {
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws wrongDataException {
 		
 		
 		// ***************** Monom Functions **********************

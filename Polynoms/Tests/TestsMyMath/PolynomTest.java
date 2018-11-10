@@ -2,6 +2,7 @@ package TestsMyMath;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -9,19 +10,19 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import Exeptions.wrongDataException;
 import myMath.Monom;
 import myMath.Monom_Comperator;
 import myMath.Polynom;
-
-class PolynomTest extends Polynom {
-
-	static Iterator<Monom> itratorMonom;
-
+class PolynomTest {
+	
 
 	static Polynom expected_Poly;
 	static Polynom acutal_Poly;
 	static double expectedVaule;
 	static double acutalVaule;
+	
+
 
 	@BeforeEach
 	void setUp() throws Exception {
@@ -50,12 +51,10 @@ class PolynomTest extends Polynom {
 
 		@Test
 		void testPolynomMonom() {
-			
 			Monom m1 = new Monom(4,6);
 			acutal_Poly = new Polynom(m1);
 			String expctedString = "[4.0x^6]";
-			String acutalString = acutal_Poly.toString();	
-			
+			String acutalString = acutal_Poly.toString();
 			if(!expctedString.equals(acutalString))
 				fail("Your got Worng with the adding Monom in the Constractor");
 		
@@ -63,7 +62,7 @@ class PolynomTest extends Polynom {
 
 	
 	@Test
-	void testPolynomPolynom() {
+	void testPolynomPolynom() throws wrongDataException {
 
 		Polynom Poly1 = new Polynom("2x^3+5x");
 		expected_Poly = new Polynom ("2x^3+5x");
@@ -75,7 +74,7 @@ class PolynomTest extends Polynom {
 	}
 
 		@Test
-		void testPolynomString() {
+		void testPolynomString() throws wrongDataException {
 			
 			String expected_String = "[5.0x^5, -3.0x^2, 2.0x^1]";
 			acutal_Poly = new Polynom("2x+5x^5-3x^2");
@@ -102,7 +101,7 @@ class PolynomTest extends Polynom {
 	}
 
 	@Test
-	void testAddPolynom_able() {
+	void testAddPolynom_able() throws wrongDataException {
 		Polynom poly = acutal_Poly;  // poly = -1.0x^4, 2.0x^3, 4.0x^2
 		expected_Poly = new Polynom("-2.0x^4, 4.0x^3, 8.0x^2");
 		acutal_Poly.add(poly); // adding the same polynom
@@ -113,7 +112,7 @@ class PolynomTest extends Polynom {
 	}
 
 	@Test
-	void testAddMonom() {
+	void testAddMonom() throws wrongDataException {
 
 		expected_Poly = new Polynom("-1.0x^4, 5.0x^3, 4.0x^2"); // adding 3x^3 then 2x^3+3x^3 = 5x^3
 		acutal_Poly.add(new Monom(3,3));
@@ -131,11 +130,13 @@ class PolynomTest extends Polynom {
 	}
 
 	@Test
-	void testSubstract() {
-
-		Polynom poly = new Polynom("-2.0x^4, 3.0x^3, 5.0x^2"); 
+	void testSubstract() throws wrongDataException {
+		Polynom poly = new Polynom("-2.0x^4+ 3.0x^3+5.0x^2"); 
 		acutal_Poly.substract(poly); // acutal_Poly - poly.
 		expected_Poly = new Polynom("1.0x^4, -1.0x^3, -1.0x^2"); // this is the result of the substract.
+
+		System.out.println(acutal_Poly.toString());
+		System.out.println(expected_Poly.toString());
 
 		if(!expected_Poly.equals(acutal_Poly))
 			fail("You got worng with the substract");
@@ -144,7 +145,7 @@ class PolynomTest extends Polynom {
 	}
 
 	@Test
-	void testMultiply() {
+	void testMultiply() throws wrongDataException {
 
 		Polynom poly = new Polynom("2x^2+x");
 		acutal_Poly.multiply(poly);  // (-1.0x^4, 2.0x^3, 4.0x^2) * (2x^2+x) = -2.0x^6, 3.0x^5, 10.0x^4, 4.0x^3
@@ -169,7 +170,7 @@ class PolynomTest extends Polynom {
 			fail("Your got Worng with the zero polynom check.");
 	}
 	@Test
-	void testRoot() {
+	void testRoot() throws wrongDataException {
 		acutal_Poly = new Polynom("2x^2+4x");
 		acutalVaule = acutal_Poly.root(-1, 2, 0.1); // the roots in this range [-1,2] is 0.
 		if(acutalVaule != 0.03125) // this is in numery sysyem.. its close to abs zero.
@@ -177,7 +178,7 @@ class PolynomTest extends Polynom {
 	}
 
 	@Test
-	void testCopy() {
+	void testCopy() throws wrongDataException {
 
 		expected_Poly = new Polynom("2x^2+3x");
 		acutal_Poly = (Polynom) expected_Poly.copy();
@@ -187,7 +188,7 @@ class PolynomTest extends Polynom {
 	}
 
 	@Test
-	void testDerivative() {
+	void testDerivative() throws wrongDataException {
 		expected_Poly = new Polynom("-4x^3+6x^2+8x"); // the Derivative is: [-4x^3 +6x^2 +8x].
 		acutal_Poly = (Polynom) acutal_Poly.derivative();
 
@@ -196,7 +197,7 @@ class PolynomTest extends Polynom {
 	}
 
 	@Test
-	void testArea() {
+	void testArea() throws wrongDataException {
 
 		acutal_Poly = new Polynom("2x^2+4x"); // there is no area above x-eis.
 		acutalVaule = acutal_Poly.area(-1, 0, 0.001); // the solution sholud be 0.
