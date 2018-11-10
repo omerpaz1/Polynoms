@@ -1,4 +1,4 @@
-package Exeptions;
+package Exceptions;
 public class wrongDataException  extends Exception {
 	
 	// Parameterless Constructor

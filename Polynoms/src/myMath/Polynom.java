@@ -8,7 +8,7 @@ import java.util.List;
 
 import javax.swing.JFrame;
 
-import Exeptions.wrongDataException;
+import Exceptions.wrongDataException;
 import fr.julien.graphique.Graphique;
 import fr.julien.graphique.ZoneGraphique;
 import fr.julien.graphique.axes.AxeX;

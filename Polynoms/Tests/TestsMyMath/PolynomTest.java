@@ -10,7 +10,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import Exeptions.wrongDataException;
+import Exceptions.wrongDataException;
 import myMath.Monom;
 import myMath.Monom_Comperator;
 import myMath.Polynom;

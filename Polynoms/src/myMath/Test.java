@@ -1,6 +1,6 @@
 package myMath;
 
-import Exeptions.wrongDataException;
+import Exceptions.wrongDataException;
 
 /**
  * this class testing all the functions in Polynom and Monom class's.
