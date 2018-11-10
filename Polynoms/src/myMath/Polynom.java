@@ -437,28 +437,32 @@ public class Polynom implements Polynom_able{
 
 	@Override
 	public void PrintMinMax(String s, double x0, double x1) {
+		
+		double start = x0;
+		double end = x1;
+
 
 		Polynom der = (Polynom) this.derivative();
 		double eps = 0.0001;
-		for (;x0 < x1 ; x0=x0+eps) {
-			if(der.f(x0) < 0 && der.f(x0+eps) > 0) {
-				Point_list.add(new Point(x0,this.f(x0)));
+		for (;start < end ; start=start+eps) {
+			if(der.f(start) < 0 && der.f(start+eps) > 0) {
+				Point_list.add(new Point(start,this.f(start)));
 			}
-			if(der.f(x0) > 0 && der.f(x0+eps) < 0) {
-				Point_list.add(new Point(x0,this.f(x0)));
+			if(der.f(start) > 0 && der.f(start+eps) < 0) {
+				Point_list.add(new Point(start,this.f(start)));
 			}
 
 		}
-		Draw_MinMax(s,Point_list);
+		Draw_MinMax(s,Point_list,x0,x1);
 
 	}
 
-	private static void Draw_MinMax(String s, ArrayList<Point> point_list) {
+	private static void Draw_MinMax(String s, ArrayList<Point> point_list, double x0, double x1) {
 
 		JFrame f = new JFrame();		
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		OptionAxe optionsAxes = new OptionAxe(Color.BLACK, true, -1, 1, true, true);
-		Graphique.getInstance().initGraphique(new AxeX(-2, 10, optionsAxes), new AxeY(-10, 6, optionsAxes));
+		Graphique.getInstance().initGraphique(new AxeX(x0, 10, optionsAxes), new AxeY(-10, x1, optionsAxes));
 		char a = 'A';
 		for (int i = 0 ; i < point_list.size(); i++, a++) {
 		Graphique.getInstance().ajouterElement(new Point(a, point_list.get(i).getAbscisse(),point_list.get(i).getOrdonnee()));

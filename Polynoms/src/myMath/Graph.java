@@ -21,10 +21,9 @@ public class Graph {
 	public static void main(String[] args) {
 		
 		String s = "0.2*X^4+(0-1.5)*X^3+3*X^2+(0-X)+(0-5)";
-		//String s = "0.2X^4-1.5X^3+3X^2-X-5";
 		Polynom poly = new Polynom("0.2X^4-1.5X^3+3X^2-X-5");
-		poly.PrintMinMax(s, -2, 6);
-
+		poly.PrintMinMax(s, -2,6);
+	
 
 	}
 
