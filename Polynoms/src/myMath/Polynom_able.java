@@ -91,7 +91,7 @@ public interface Polynom_able extends cont_function{
 	
 	/**
 	 * Search for Minimum and Maximum points, and add them to the Graphic Drawing.
-	 * @param s  Receiv String in the form of a Polynom
+	 * @param s  Receiv String in the form of a Polynom, expample of right string for Printing: 0.2*X^4+(0-1.5)*X^3+3*X^2+(0-X)+(0-5). 
 	 * @param x0 lower definition domain
 	 * @param x1 higher definition domain
 	 * @return Printing of the Minimum and Maximum Points on the Graph
