@@ -135,8 +135,6 @@ class PolynomTest {
 		acutal_Poly.substract(poly); // acutal_Poly - poly.
 		expected_Poly = new Polynom("1.0x^4, -1.0x^3, -1.0x^2"); // this is the result of the substract.
 
-		System.out.println(acutal_Poly.toString());
-		System.out.println(expected_Poly.toString());
 
 		if(!expected_Poly.equals(acutal_Poly))
 			fail("You got worng with the substract");
@@ -221,9 +219,23 @@ class PolynomTest {
 
 		if(expected == null) 
 			fail("Your got worng with creat a interator.");
-		System.out.println("bad");
 
 
+	}
+	
+	@Test
+	void underX_area() throws wrongDataException {
+		acutal_Poly = new Polynom("x^3-2x");
+		acutalVaule  = acutal_Poly.underX_area(-1.414, 0, 0.01); // there is no area.. should be 0.
+		expectedVaule = 0;
+		
+		if (acutalVaule != expectedVaule) {
+			fail("You got Worng with calculate the area under x.");
+		}
+		
+		
+		
+		
 	}
 	@Test
 	void testToString() {

@@ -21,10 +21,53 @@ public class Graph {
 	
 	public static void main(String[] args) throws wrongDataException {
 		
-		String s = "0.2*X^4+(0-1.5)*X^3+3*X^2+(0-X)+(0-5)";
+		String string = "0.2*X^4+(0-1.5)*X^3+3*X^2+(0-X)+(0-5)"; // the right string for the polynom.
 		Polynom poly = new Polynom("0.2X^4-1.5X^3+3X^2-X-5");
-		poly.PrintMinMax(s, -2,6);
+		System.out.println(poly.toString());
+		PrintMinMax(poly,string, -2,6);
 	
+
+	}
+	public static void PrintMinMax(Polynom poly, String s, double x0, double x1) {
+
+		double start = x0;
+		double end = x1;
+
+
+		Polynom der = (Polynom) poly.derivative();
+		double eps = 0.0001;
+		for (;start < end ; start=start+eps) {
+			if(der.f(start) < 0 && der.f(start+eps) > 0) {
+				poly.Point_list.add(new Point(start,poly.f(start)));
+			}
+			if(der.f(start) > 0 && der.f(start+eps) < 0) {
+				poly.Point_list.add(new Point(start,poly.f(start)));
+			}
+
+		}
+		Draw_MinMax(s,poly.Point_list,x0,x1);
+
+	}
+
+	private static void Draw_MinMax(String s, ArrayList<Point> point_list, double x0, double x1) {
+
+		JFrame f = new JFrame();		
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		OptionAxe optionsAxes = new OptionAxe(Color.BLACK, true, -1, 1, true, true);
+		Graphique.getInstance().initGraphique(new AxeX(x0, 10, optionsAxes), new AxeY(-10, x1, optionsAxes));
+		
+		char a = 'A';
+		for (int i = 0 ; i < point_list.size(); i++, a++) {
+			Graphique.getInstance().ajouterElement(new Point(a, point_list.get(i).getAbscisse(),point_list.get(i).getOrdonnee()));
+		}
+		Graphique.getInstance().ajouterElement(new Fonction((s)));
+		List<Point> points = new ArrayList<Point>();
+		Graphique.getInstance().ajouterElement(new Polygone(points));
+		Graphique.getInstance().ajouterElement(new Quadrillage(0.5, 0.5));
+		f.add(new ZoneGraphique());
+		f.pack();
+		f.setLocationRelativeTo(null);
+		f.setVisible(true);
 
 	}
 

@@ -38,7 +38,7 @@ public class Polynom implements Polynom_able{
 
 	private ArrayList<Monom> Monoms_list=  new ArrayList<>();
 	private Monom_Comperator  MonomSort = new Monom_Comperator();
-	private ArrayList<Point> Point_list =  new ArrayList<>();
+	ArrayList<Point> Point_list =  new ArrayList<>();
 
 
 
@@ -237,7 +237,6 @@ public class Polynom implements Polynom_able{
 
 		double c = x0;
 
-		System.out.println(f(x0)*f(x1));
 		if((f(x0)*f(x1)) >= 0) {
 			System.out.println("There is no solotion for this polynom.");
 			return Double.MAX_VALUE;
