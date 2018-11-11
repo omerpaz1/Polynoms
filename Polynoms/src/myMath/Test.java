@@ -201,8 +201,9 @@ public class Test {
 			System.out.println("The Polynom is: "+pol.toString()+" and the area is: "+pol.area(-2, 5, 0.001));
 			System.out.println("**************************************************");
 
-			
-			
+			String string = "0.2*X^4+(0-1.5)*X^3+3*X^2+(0-X)+(0-5)"; // the right string for the polynom.
+			Polynom polynom = new Polynom("0.2X^4-1.5X^3+3X^2-X-5");
+			Graph.PrintMinMax(polynom, string, -2, 6);
 			
 
 	}
