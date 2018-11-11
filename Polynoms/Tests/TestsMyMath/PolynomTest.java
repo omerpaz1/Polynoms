@@ -232,8 +232,13 @@ class PolynomTest {
 		if (acutalVaule != expectedVaule) {
 			fail("You got Worng with calculate the area under x.");
 		}
-		
-		
+		acutalVaule  = acutal_Poly.underX_area(0, 1.414, 0.01); // there is no area.. should be 0.
+		expectedVaule = 0.9998823499999995;
+		if(acutalVaule != expectedVaule) {
+			fail("You got Worng with calculate the area under x.");
+	
+		}
+			
 		
 		
 	}
