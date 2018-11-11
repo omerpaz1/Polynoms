@@ -59,6 +59,7 @@ public class Graph {
 		f.pack();
 		f.setLocationRelativeTo(null);
 		f.setVisible(true);
+	
 
 	}
 
