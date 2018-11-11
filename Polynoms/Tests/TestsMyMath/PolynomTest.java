@@ -221,6 +221,7 @@ class PolynomTest {
 
 		if(expected == null) 
 			fail("Your got worng with creat a interator.");
+		System.out.println("bad");
 
 
 	}
