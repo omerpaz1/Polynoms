@@ -6,7 +6,7 @@
  *
  */ 
 public interface cont_function extends function{
-	/**
+	/** omer paz
 	 * Compute a Riman's integral from x0 to x1 in eps steps. 
 	 * @param x0 starting point
 	 * @param x1 end point
