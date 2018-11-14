@@ -8,6 +8,8 @@ import org.junit.jupiter.api.BeforeEach;
 import myMath.Monom;
 import org.junit.jupiter.api.Test;
 
+import Exceptions.wrongDataException;
+
 class MonomTest {
 
 

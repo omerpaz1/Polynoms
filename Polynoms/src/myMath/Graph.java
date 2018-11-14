@@ -81,6 +81,7 @@ public class Graph {
 		char a = 'A';
 		for (int i = 0 ; i < point_list.size(); i++, a++) {
 			Graphique.getInstance().ajouterElement(new Point(a, point_list.get(i).getAbscisse(),point_list.get(i).getOrdonnee()));
+			System.out.println("Point "+i+": "+point_list.get(i).getAbscisse()+","+point_list.get(i).getOrdonnee());
 		}
 		Graphique.getInstance().ajouterElement(new Fonction((s)));
 		List<Point> points = new ArrayList<Point>();
