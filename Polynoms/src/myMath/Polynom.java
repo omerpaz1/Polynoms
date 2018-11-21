@@ -109,12 +109,12 @@ public class Polynom implements Polynom_able{
 	 */
 	public void add(Polynom_able p1) {
 
-		Iterator<Monom> Monoms = iteretor();
+		Iterator<Monom> Monoms = p1.iteretor();
 
 		while(Monoms.hasNext()) {
 
 			Monom temp = Monoms.next();
-			p1.add(temp);		
+			this.add(temp);		
 		}
 
 	}
@@ -243,10 +243,13 @@ public class Polynom implements Polynom_able{
 		}
 		else {
 			while ((x1 - x0) >= eps) {			
-				c = x0+(x1-x0)/2;
-
-				if (f(c)*f(x0) < 0) 
+				c = (x0+x1)/2;
+				if (f(c) == 0.0) {
+					break;
+				}
+				else if (f(c)*f(x0) < 0) {
 					x1 = c;
+				}
 				else {
 					x0 = c;
 				}
@@ -307,7 +310,7 @@ public class Polynom implements Polynom_able{
 				sum = sum + area_By_Parts;
 			}
 		}
-		return Math.abs(sum);
+		return sum;
 	}
 
 
@@ -484,12 +487,12 @@ public class Polynom implements Polynom_able{
 			// now in power
 			else
 			{
-				
+
 				// not last char
 				if (i+1<string.length())
 				{
 					// making sure that the beginning of power is written correctly
-					 if (string.charAt(i) == '^' && !Character.isDigit(string.charAt(i+1)) || ((string.charAt(i) == 'x' || string.charAt(i) == 'X') && (string.charAt(i+1) != '^' && string.charAt(i+1) != ',')))
+					if (string.charAt(i) == '^' && !Character.isDigit(string.charAt(i+1)) || ((string.charAt(i) == 'x' || string.charAt(i) == 'X') && (string.charAt(i+1) != '^' && string.charAt(i+1) != ',')))
 					{
 						throw new wrongDataException("A power can not be a negitave power or a random symbal at location " + (i+1) + string.charAt(i) );
 					}

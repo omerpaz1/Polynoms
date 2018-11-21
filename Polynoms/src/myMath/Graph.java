@@ -29,12 +29,17 @@ public class Graph {
 	 */
 	public static void main(String[] args) throws wrongDataException {
 
-		String string = "0.2*X^4+(0-1.5)*X^3+3*X^2+(0-X)+(0-5)"; // the right string for the polynom.
-		Polynom poly = new Polynom("0.2X^4-1.5X^3+3X^2-X-5");
-		System.out.println(poly.toString());
-		PrintMinMax(poly,string, -2,6);
-
-
+//		String string = "0.2*X^4+(0-1.5)*X^3+3*X^2+(0-X)+(0-5)"; // the right string for the polynom.
+//		Polynom poly = new Polynom("0.2X^4-1.5X^3+3X^2-X-5");
+//		System.out.println(poly.toString());
+//		PrintMinMax(poly,string, -2,6);
+//		
+		Polynom poly = new Polynom("2.0x^6, -13.0x^5, 26.0x^4, -7.0x^3, -28.0x^2, 20.0x^1");
+		String s = "2.0*X^6+(0-13.0)*X^5+26.0*X^4+(0-7.0)*X^3 +(0-28.0)*X^2+20.0*X^1";
+		PrintMinMax(poly, s, -2, 4);
+		
+		
+		
 	}
 	/**
 	 *The function is used the project Import Graph, and call the function that can print a function and the Max and Min points.
@@ -94,8 +99,7 @@ public class Graph {
 	
 
 	}
-
-
-
-
 }
+
+
+

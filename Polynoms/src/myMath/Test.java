@@ -12,7 +12,7 @@ public class Test {
 	
 	public static void main(String[] args) throws wrongDataException {
 		
-		
+		/*
 		// ***************** Monom Functions **********************
 		
 		Monom zero_Monom = new Monom(0,0);
@@ -204,8 +204,20 @@ public class Test {
 			String string = "0.2*X^4+(0-1.5)*X^3+3*X^2+(0-X)+(0-5)"; // the right string for the polynom.
 			Polynom polynom = new Polynom("0.2X^4-1.5X^3+3X^2-X-5");
 			Graph.PrintMinMax(polynom, string, -2, 6);
+			
+		*/
 	
-
+		Polynom p1 = new Polynom("- 13x^5 + 2x^6 - 7x^3 - 28x^2 + 19x - 0.5");
+		Polynom p2 = new Polynom("1x + 26x^4 + 0.5");
+		Polynom p3 = (Polynom)p1.copy();
+		p3.add(p2);
+		
+		System.out.println("p3 String : " + p3.toString());
+		System.out.println("f(0.5) : " + p3.f(0.5));
+		System.out.println("f(1.5) : " + p3.f(1.5));
+		System.out.println("root(0.5, 1.5, 0.001) : " + p3.root(0.5, 1.5, 0.001));
+		System.out.println("Derivative : " + p3.derivative().toString());
+		System.out.println("area(-1, 2, 0.001) : " + p3.area(-1, 2, 0.001));
 
 
 	}
